@@ -7,12 +7,12 @@
 <div class="row">                   
 	<div class="col-lg-6">
 		<label for="Nombre">Nombre del cliente</label>
-		<input type="text" class="form-control" placeholder="Nombre del cliente" name="nombre">
+		<input type="text" class="form-control" placeholder="Nombre del cliente" name="nombre" value="{{old('nombre')}}">
 		<label for="Email">Correo de contacto</label>
-		<input type="email" class="form-control" placeholder="Correo electronico" name="correo">
+		<input type="email" class="form-control" placeholder="Correo electronico" name="correo" value="{{old('correo')}}">
 				
 		<label for="Telefono">Telefono de contacto</label>
-		<input type="text" class="form-control" placeholder="Telefono" name="telefono">	
+		<input type="number" class="form-control" placeholder="Telefono" name="telefono" value="{{old('telefono')}}">	
 	</div>
 	<div class="col-lg-6">
 		<label for="Estado">Estado</label>
@@ -28,10 +28,10 @@
 			@endforeach
 		</select>
 		<label for="Direccion">Direccion</label>
-		<input type="text" class="form-control" placeholder="Calle, Mz, Lt, Colonia" name="direccion">
+		<input type="text" class="form-control" placeholder="Calle, Mz, Lt, Colonia" name="direccion" value="{{old('direccion')}}">
 
 		<label for="Distancia">Distancia (Km)</label>
-		<input type="number" class="form-control" placeholder="Distancia a la matriz" name="distancia">
+		<input type="number" class="form-control" placeholder="Distancia a la matriz" name="distancia" value="{{old('distancia')}}">
 	</div>
 </div>
 <hr>

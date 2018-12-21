@@ -1,6 +1,5 @@
 @extends('layouts.app')
 
-
 @section('estilos')
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css">
@@ -9,7 +8,7 @@
 @endsection
 
 @section('content')
-	<h1 class="text-center">Bitacora index</h1>
+	<h1 class="text-center">Listado de Bitacoras</h1>
 
 <div class="table-responsive-sm col-lg-12" >
 	<table id="tblBitacora" class="table table-striped table-bordered table-sm">

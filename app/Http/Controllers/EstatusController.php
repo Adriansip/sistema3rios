@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\EstatusExport;
 use App\Http\Requests\EstatusUpdateRequest;
+use App\Http\Requests\EstatusStoreRequest;
 
 use App\Estatus;
 use App\Observaciones;
@@ -87,7 +88,7 @@ class EstatusController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request,$idBitacora)
+    public function store(EstatusStoreRequest $request,$idBitacora)
     {
         $estatus=new Estatus;
 

@@ -1,4 +1,3 @@
-
 @extends('home')
 
 @section('content')
@@ -62,6 +61,7 @@
 	</div>
 
 	@include('ventana')
+	
 	@include('cliente.errores.error')
 <!-- Ventana Modal -->
 	<div class="modal fade" id="ventana">
@@ -116,7 +116,9 @@
 					</div>    
 					<br>
 					<input type="submit" class="btn btn-success btn-block" value="Agregar">                   
+
 					</form>
+
 				</div>
 			<!-- FOOTER -->
             	<div class="modal-footer">                    
@@ -131,6 +133,7 @@
      <div class="alert alert-{{Session::get('class')}}">
      	<button type="button" class="close" data-dismiss="alert">&times;</button>{{Session::get('message')}}</div>      
 @endif
+
 
 @endsection
 

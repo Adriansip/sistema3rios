@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
+use App\Http\Requests\BitacoraStoreRequest;
 
 use Session;
 use Redirect;
@@ -41,15 +42,15 @@ class BitacoraController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(BitacoraStoreRequest $request)
+    {           
         $bitacora=new Bitacora;
     
-        $bitacora->idCliente=Input::get('cliente');
-        $bitacora->noEmbarque=Input::get('noEmbarque');
-        $bitacora->kilosBrutos=Input::get('kilosBrutos');
-        $bitacora->kilosNetos=Input::get('kilosNetos');
-        $bitacora->numeroTarimas=Input::get('numeroTarimas');
+        $bitacora->idCliente=$request->input('cliente');
+        $bitacora->noEmbarque=$request->input('noEmbarque');
+        $bitacora->kilosBrutos=$request->input('kilosBrutos');
+        $bitacora->kilosNetos=$request->input('kilosNetos');
+        $bitacora->numeroTarimas=$request->input('numeroTarimas');
 
         if($bitacora->save()){
             Session::flash('message','Bitacora creada correctamente');
@@ -58,8 +59,9 @@ class BitacoraController extends Controller
             Session::flash('message','Ha ocurrido un error');
             Session::flash('class','danger');
         }
+                
 
-        return Redirect::to('/Bitacora/crear');
+        return Redirect::route('/Bitacora');
     }
 
     /**

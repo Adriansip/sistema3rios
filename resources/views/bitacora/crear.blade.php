@@ -6,24 +6,24 @@
 	@csrf
 <div class="row">
 	<div class="col-lg-6">		
-			<label for="Estado">Cliente</label>															
+			<label for="Estado">Cliente</label>			
 	        <select class="form-control" name="cliente" id="cliente">	        	
 	        	<option value="">Seleccione una opcion</option>
 	        	<option value="abrirRuta">Añadir nuevo cliente...</option>
 	        	@foreach($clientes as $cliente)
-	       		<option value="{{$cliente->idCliente}}">{{$cliente->nombre}}</option>
+	       		<option value="{{$cliente->idCliente}}" {{(old('cliente')==$cliente->idCliente)? 'selected':''}}>{{$cliente->nombre}}</option>
 	       		@endforeach	       		
 	        </select>    	        
 	        <label for="NumeroEmbarque">Numero de Embarque</label>
-			<input type="text" class="form-control" placeholder="Numero de embarque" name="noEmbarque">    
+			<input type="text" class="form-control" placeholder="Numero de embarque" name="noEmbarque" value="{{old('noEmbarque')}}" >    
 			<label for="numeroTarimas">Numero de Tarimas</label>
-			<input type="number" class="form-control" placeholder="Numero de tarimas" name="numeroTarimas">
+			<input type="number" class="form-control" placeholder="Numero de tarimas" name="numeroTarimas" value="{{old('numeroTarimas')}}">
 	</div>
 	<div class="col-lg-6">
 		<label for="kilosBrutos">Cantidad de Kilos Brutos</label>
-		<input type="number" class="form-control" placeholder="Kg Brutos" name="kilosBrutos">
+		<input type="number" class="form-control" placeholder="Kg Brutos" name="kilosBrutos" value="{{old('kilosBrutos')}}">
 		<label for="kilosNetos">Cantidad de Kilos Netos</label>
-		<input type="number" class="form-control" placeholder="Kg Netos" name="kilosNetos"> 
+		<input type="number" class="form-control" placeholder="Kg Netos" name="kilosNetos" value="{{old('kilosNetos')}}"> 
 	</div>
 </div>
 <hr>
@@ -31,7 +31,7 @@
 <input type="submit" value="Agregar" class="btn btn-success btn-block btn-lg" >
 </form>
 
-
+@include('cliente.errores.error')
 <!--Recibir resultado-->
 @if(Session::has('message'))
      <div class="alert alert-{{Session::get('class')}}">
