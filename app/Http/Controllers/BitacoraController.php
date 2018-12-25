@@ -11,6 +11,7 @@ use Redirect;
 
 use App\Clientes;
 use App\Bitacora;
+use App\Estados;
 
 class BitacoraController extends Controller
 {
@@ -21,7 +22,7 @@ class BitacoraController extends Controller
      */
     public function index()
     {
-        $bitacoras=Bitacora::all();
+        $bitacoras=Bitacora::all();        
         return view('bitacora.index',compact('bitacoras'));
     }
 
@@ -33,7 +34,8 @@ class BitacoraController extends Controller
     public function create()
     {        
         $clientes=Clientes::all();
-        return view('bitacora.crear',compact('clientes'));
+        $estados=Estados::all();
+        return view('bitacora.crear',compact('clientes','estados'));
     }
 
     /**

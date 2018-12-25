@@ -23,7 +23,7 @@
 		</select>
 		<label for="Ciudad">Ciudad</label>
 		<select class="form-control" name="idCiudad" id="ciudades">
-            @foreach($ciudades as $ciudad)
+            @foreach($estados[0]->ciudades as $ciudad)
 			<option value="{{$ciudad->idCiudad}}">{{$ciudad->ciudad}}</option>
 			@endforeach
 		</select>

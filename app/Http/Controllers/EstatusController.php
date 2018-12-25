@@ -41,31 +41,16 @@ class EstatusController extends Controller
     }
 
     public function getEstatus($idEstatus){
-        $estatus=Estatus::where('idEstatus',$idEstatus)->first();
-        $entregado=$estatus->entregado;
-        $noTransito=$estatus->noTransito;
-
+        $estatus=Estatus::find($idEstatus);
+                
         $ciudad=explode(",",$estatus->lugar);        
-        
-        $ciudad=Ciudades::where('ciudad',$ciudad[0])->first();
-
-        $idEstado=$ciudad->estado->idEstado;
-        $estado=$ciudad->estado->estado;
-
-        $observaciones=$estatus->observacion;
-
-        $idObservacion=$observaciones->idObservacion;
-        $observacion=$observaciones->observacion;
-        $otro=$estatus->otro;
+        $ciudad=Ciudades::where('ciudad',$ciudad[0])->first();                
+                        
 
         $data=array(
-            "estatus" => $estatus,
-            "noTransito" => $noTransito,
-            "ciudad" => $ciudad,                                    
-            "idObservacion" => $idObservacion,
-            "observacion" => $observacion,
-            "otro" => $otro,
-            "entregado" => $entregado
+            "estatus" => $estatus,            
+            "idCiudad" => $ciudad->idCiudad,
+            "idEstado" => $ciudad->estado->idEstado
         );
 
         return $data;
@@ -107,13 +92,12 @@ class EstatusController extends Controller
         $estatus->noTransito=$request->input('noTransito');
         $estatus->fecha=$request->input('fecha');
         $estatus->hora=$request->input('hora');
-
         $estatus->idObservacion=$request->input('idObservacion');
-        
         $estatus->otro=$request->input('otro');
-        
+
+        //Convertir a true
         $entregado=$request->input('entregado');
-        if($entregado=='on'){
+        if($entregado){
             $estatus->entregado=true;    
         }
         
@@ -203,38 +187,28 @@ class EstatusController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(EstatusUpdateRequest $request,$idEstatus)
-    {
-        
-        $estatus=Estatus::where('idEstatus',$idEstatus)->first();
+    {        
+        $estatus=Estatus::find($idEstatus);
+            
+        $estatus->fill($request->all());        
 
-        $ciudad=Ciudades::where('idCiudad',$request->idCiudad2)->first();        
-        $estatus->lugar=$ciudad->ciudad.", ".$ciudad->estado->estado;
-
-        $estatus->noTransito=$request->_noTransito;
-
-        $estatus->fecha=$request->_fecha;
-        $estatus->hora=$request->_hora;
-
-        $estatus->idObservacion=$request->idObservacion2;
-
-        $estatus->otro=$request->otro2;
-        
-        $entregado=$request->entregado2;
+          //Convertir a true
+        $entregado=$request->input('entregado');        
 
         if($entregado){
-            $entregado=true;            
-        }
-
-        $estatus->entregado=$entregado;
+            $estatus->entregado=true;
+        }else{
+            $estatus->entregado=null;
+        }        
 
         if($estatus->save()){
             Session::flash('message','Estatus actualizado correctamente');
-            Session::flash('class','success');        
+            Session::flash('class','success');
         }else{
-            Session::flash('message','Verifique que todos los datos esten completos');
-            Session::flash('class','danger'); 
-        }
- 
+            Session::flash('message','Ha ocurrido un error');
+            Session::flash('class','danger');
+        }   
+
 
         return back();
         

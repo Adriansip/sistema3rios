@@ -22,7 +22,9 @@ class ClientesController extends Controller
      */
     public function index()
     {
-        return view('cliente.cliente');
+        $clientes=Clientes::all();
+        $estados=Estados::all();
+        return view('cliente.index',compact('clientes','estados'));
     }
 
     /**
@@ -33,8 +35,7 @@ class ClientesController extends Controller
     public function create()
     {
         $estados=Estados::all();
-        $ciudades=Ciudades::where('idEstado',1)->get();        
-        return view('cliente.insertar',compact('estados','ciudades'));
+        return view('cliente.insertar',compact('estados'));
     }
 
     /**
@@ -47,22 +48,22 @@ class ClientesController extends Controller
     {
         $cliente=new Clientes;
 
-        $cliente->nombre=Input::get('nombre');
-        $cliente->correo=Input::get('correo');
-        $cliente->telefono=Input::get('telefono');
-        $cliente->idCiudad=Input::get('idCiudad');
-        $cliente->direccion=Input::get('direccion');
-        $cliente->distancia=Input::get('distancia');
+        $cliente->nombre=$request->input('nombre');
+        $cliente->correo=$request->input('correo');
+        $cliente->telefono=$request->input('telefono');
+        $cliente->idCiudad=$request->input('idCiudad');
+        $cliente->direccion=$request->input('direccion');
+        $cliente->distancia=$request->input('distancia');
 
         if($cliente->save()){
-            Session::flash('message','cliente guardado correctamente');
+            Session::flash('message','Cliente guardado correctamente');
             Session::flash('class','success');
         }else{
             Session::flash('message','Ha ocurrido un error');
             Session::flash('class','danger');
         }        
 
-        return Redirect::to('/Cliente/nuevo');
+        return back();
 
     }
 
@@ -72,9 +73,9 @@ class ClientesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show($idCliente)
     {
-        return Clientes::all();
+        return Clientes::find($idCliente);
     }
 
     /**
@@ -97,7 +98,18 @@ class ClientesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $cliente=Clientes::find($id);
+        $cliente->fill($request->all());        
+        
+        if($cliente->save()){
+            Session::flash('message','Cliente actualizado correctamente');
+            Session::flash('class','success');
+        }else{
+            Session::flash('message','Ha ocurrido un error');
+            Session::flash('class','danger');
+        }        
+        
+        return back();
     }
 
     /**
@@ -107,8 +119,13 @@ class ClientesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
-        //
+    {         
+        Clientes::destroy($id);
+
+        Session::flash('message','Cliente eliminado correctamente');
+        Session::flash('class','success');
+
+        return back();
     }
 }
 

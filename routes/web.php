@@ -19,14 +19,18 @@ Route::get('/Estatus','EstatusController@index');
 Route::post('/Estatus/mostrar','EstatusController@show');
 Route::get('/Estatus/{idBitacora}/excel','EstatusController@excel');
 
-Route::get('/Clientes/listar','ClientesController@show');
 
 
 Auth::routes();
 
 Route::group(['middleware'=> ['admin']],function(){	
-	Route::get('/Cliente/nuevo','ClientesController@create');
+	Route::get('/Clientes','ClientesController@index');
+	Route::get('/Cliente/nuevo','ClientesController@create');	
+	Route::get('/Cliente/{idCliente}','ClientesController@show');
+
 	Route::post('/Cliente/nuevo/add','ClientesController@store');
+	Route::post('/Cliente/actualizar/{idCliente}','ClientesController@update');
+	Route::get('/Cliente/eliminar/{idCliente}','ClientesController@destroy');	
 
 	Route::get('/Bitacora','BitacoraController@index');
 	Route::get('/Bitacora/crear','BitacoraController@create');
@@ -37,8 +41,8 @@ Route::group(['middleware'=> ['admin']],function(){
 	Route::post('/Estatus/eliminar','EstatusController@destroy');
 
 	Route::post('/Estatus/actualizar/{idEstatus}','EstatusController@update');
-
 	Route::get('/Estatus/listar/{idEstatus}','EstatusController@getEstatus');
+
 
 	Route::get('/Ciudades/{idCiudad}','CiudadesController@show');
 });

@@ -8,7 +8,7 @@
 @endsection
 
 @section('content')
-	<h1 class="text-center">Listado de Bitacoras</h1>
+<h1 class="text-center">Listado de Bitacoras</h1>
 
 <div class="table-responsive-sm col-lg-12" >
 	<table id="tblBitacora" class="table table-striped table-bordered table-sm">

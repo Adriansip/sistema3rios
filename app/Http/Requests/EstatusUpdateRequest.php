@@ -24,9 +24,9 @@ class EstatusUpdateRequest extends FormRequest
     public function rules()
     {
          return [
-            '_noTransito' => 'required',
-            '_fecha' => 'required',
-            '_hora' => 'required',
+            'noTransito' => 'required',
+            'fecha' => 'required',
+            'hora' => 'required',
         ];
     }
 }

@@ -45,17 +45,14 @@
                                     <a href="{{url('/Cliente/nuevo')}}" class="list-group-item list-group-item-action active">
                                     Agregar
                                     </a>
-                                    <a href="#" class="list-group-item list-group-item-action">Listar</a> 
+                                    <a href="{{url('/Clientes')}}" class="list-group-item list-group-item-action">Listar</a> 
                                     <br>
                                 </div>                                    
                                 </div>                            
                         </div>
                     </div> 
                     <br>
-
-                   
                     </div>
-
                 </div>
             </div>
         </div>

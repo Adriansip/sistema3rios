@@ -1,6 +1,7 @@
 @extends('layouts.app');
 
 @section('content')
+@include('bitacora.errores.error')
 <h1 class="text-center">Nueva Bitacora</h1>
 <form action="/Bitacora/add" method="post">
 	@csrf
@@ -31,13 +32,12 @@
 <input type="submit" value="Agregar" class="btn btn-success btn-block btn-lg" >
 </form>
 
-@include('cliente.errores.error')
+@include('cliente.modal.ventana')
 <!--Recibir resultado-->
 @if(Session::has('message'))
      <div class="alert alert-{{Session::get('class')}}">
      <button type="button" class="close" data-dismiss="alert">&times;</button>
- 		{{Session::get('message')}}</div>
-            
+ 		{{Session::get('message')}}</div>       
 @endif
 
 @endsection
@@ -49,7 +49,8 @@
 	<script>
 		$('#cliente').on('change',function () {			
 			if($(this).val()==="abrirRuta"){
-				window.open('/Cliente/nuevo');
+				$(this).attr("data-target","#ventana");
+				$(this).attr("data-toggle","modal");
 			}
 		});
 	</script>
