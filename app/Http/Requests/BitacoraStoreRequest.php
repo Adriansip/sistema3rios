@@ -24,7 +24,7 @@ class BitacoraStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'cliente' => 'required',
+            'idCliente' => 'required',
             'noEmbarque' => 'required',
             'kilosBrutos' => 'required|numeric',
             'kilosNetos' => 'required|numeric',

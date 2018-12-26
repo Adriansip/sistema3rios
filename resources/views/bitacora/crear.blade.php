@@ -2,13 +2,13 @@
 
 @section('content')
 @include('bitacora.errores.error')
-<h1 class="text-center">Nueva Bitacora</h1>
-<form action="/Bitacora/add" method="post">
+<h1 class="text-center" id="titulo">Nueva Bitacora</h1>
+<form action="/Bitacora/add" method="post" id="frmAgregar">
 	@csrf
 <div class="row">
 	<div class="col-lg-6">		
 			<label for="Estado">Cliente</label>			
-	        <select class="form-control" name="cliente" id="cliente">	        	
+	        <select class="form-control" name="idCliente" id="cliente">	        	
 	        	<option value="">Seleccione una opcion</option>
 	        	<option value="abrirRuta">Añadir nuevo cliente...</option>
 	        	@foreach($clientes as $cliente)
@@ -29,7 +29,7 @@
 </div>
 <hr>
 <!--REGISTRAR-->
-<input type="submit" value="Agregar" class="btn btn-success btn-block btn-lg" >
+<input type="submit" value="Agregar" class="btn btn-success btn-block btn-lg" id="btnAgregar">
 </form>
 
 @include('cliente.modal.ventana')
@@ -45,6 +45,10 @@
 
 @section('scripts')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+@if(isset($id))
+<script src="{{asset('js/bitacora/editar.js')}}"></script>
+@endif
 
 	<script>
 		$('#cliente').on('change',function () {			

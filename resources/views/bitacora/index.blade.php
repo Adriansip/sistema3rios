@@ -26,23 +26,25 @@
 		<tbody>			
 				@foreach($bitacoras as $bitacora)
 				<tr>
-					<th scope="row">{{$bitacora->idBitacora}}</th>
+					<th scope="row" class="text-center">{{$bitacora->idBitacora}}</th>
 					<td class="text-center">{{$bitacora->idCliente}} - {{$bitacora->cliente->nombre}}</td>
 					<td class="text-center">{{$bitacora->noEmbarque}}</td>
 					<td class="text-center">{{$bitacora->kilosBrutos}}</td>
 					<td class="text-center">{{$bitacora->kilosNetos}}</td>
 					<td class="text-center">{{$bitacora->numeroTarimas}}</td>
 
-					<td><a role="button" aria-pressed="true" href="{{url('/Estatus/agregar')}}/{{$bitacora->noEmbarque}}" class="btn btn-primary btn-lg btn-block">Ver
-						<img src="{{asset('imagenes/ver.png')}}" alt="editar"></button></td>
-					<td><button class="btn btn-info btn-lg btn-block">
-						  Editar <img src="{{asset('imagenes/editar.png')}}" alt="editar">
-					</button></td>
+					<td><a role="button" aria-pressed="true" href="{{url('/Estatus/agregar')}}/{{$bitacora->noEmbarque}}" class="btn btn-primary btn-lg btn-block">Ver Estatus
+						<img src="{{asset('imagenes/ver.png')}}" alt="Ver"></a></td>
+
+					<td><a role="button" aria-pressed="true" href="{{url('/Bitacora/editar')}}/{{$bitacora->idBitacora}}" class="btn btn-info btn-lg btn-block">Editar
+						<img src="{{asset('imagenes/editar.png')}}" alt="editar"></a></td>
+
 					<td>
-						<button class="btn btn-danger btn-lg btn-block ">
-						  Eliminar <img src="{{asset('imagenes/eliminar.png')}}" alt="eliminar">
-					</button></td>
-					</td>	
+						<a href="/Bitacora/eliminar/{{$bitacora->idBitacora}}"><button class="btn btn-danger btn-lg" onclick="return confirm('¿Seguro de que desea eliminar este registro?')">
+						  Eliminar<img src="{{asset('imagenes/eliminar.png')}}" alt="eliminar">
+						</button>
+						</a>
+					</td>
 				</tr>
 				@endforeach
 		</tbody>
@@ -50,6 +52,12 @@
 </div>
 @endsection
 
+<!--Recibir resultado-->
+@if(Session::has('message'))
+     <div class="alert alert-{{Session::get('class')}}">
+     <button type="button" class="close" data-dismiss="alert">&times;</button>
+ 		{{Session::get('message')}}</div>       
+@endif
 
 @section('scripts')		
 	<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>

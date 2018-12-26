@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\ClientesStoreRequest;
+use App\Http\Requests\ClientesUpdateRequest;
 
 use Illuminate\Support\Facades\Input;
 
@@ -96,7 +97,7 @@ class ClientesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ClientesUpdateRequest $request, $id)
     {
         $cliente=Clientes::find($id);
         $cliente->fill($request->all());        

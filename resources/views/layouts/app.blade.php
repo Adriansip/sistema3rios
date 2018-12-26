@@ -28,7 +28,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="{{ url('/home') }}">
                     <img src="{{asset('imagenes/icono.png')}}" width="100" height="60" alt="">
                     {{ config('app.name', 'Laravel') }}
                 </a>
@@ -39,7 +39,9 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                      @yield('navbar')
+                        @if(Auth::user()!= null and Auth::user()->hasRole('admin'))
+                            @include('navbar')
+                        @endif
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -60,7 +62,7 @@
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>                                
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                @if(Auth::user()->roles[0]->rol=='admin')
+                                @if(Auth::user()->hasRole('admin'))
                                     <a href="{{route('home')}}" class="dropdown-item">Panel de Administracion</a>
                                 @endif
                                 

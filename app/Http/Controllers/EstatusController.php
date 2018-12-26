@@ -110,7 +110,7 @@ class EstatusController extends Controller
             Session::flash('class','danger');
         }
 
-        return Redirect::to('/Estatus/agregar/'.$noEmbarque);
+        return back();
     }
 
     /**

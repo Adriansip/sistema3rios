@@ -3,10 +3,10 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class ClientesStoreRequest extends FormRequest
+class ClientesUpdateRequest extends FormRequest
 {
-    
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -26,7 +26,8 @@ class ClientesStoreRequest extends FormRequest
     {
         return [
             'nombre' => 'required',
-            'correo' => 'required|email|unique:clientes,correo',
+            'correo' => ['required', Rule::unique('clientes')->ignore($this->idCliente,'idCliente'),], //No olvidar importar la clase
+            //'correo' => 'required|email|unique:clientes,'.'idCliente',
             'telefono' => 'required|min:8',
             'direccion' => 'required',
             'distancia' => 'required'

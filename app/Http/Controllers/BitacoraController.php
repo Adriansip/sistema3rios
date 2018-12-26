@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use App\Http\Requests\BitacoraStoreRequest;
+use App\Http\Requests\BitacoraUpdateRequest;
 
 use Session;
 use Redirect;
@@ -47,12 +48,8 @@ class BitacoraController extends Controller
     public function store(BitacoraStoreRequest $request)
     {           
         $bitacora=new Bitacora;
-    
-        $bitacora->idCliente=$request->input('cliente');
-        $bitacora->noEmbarque=$request->input('noEmbarque');
-        $bitacora->kilosBrutos=$request->input('kilosBrutos');
-        $bitacora->kilosNetos=$request->input('kilosNetos');
-        $bitacora->numeroTarimas=$request->input('numeroTarimas');
+        
+        $bitacora->fill($request->all());
 
         if($bitacora->save()){
             Session::flash('message','Bitacora creada correctamente');
@@ -63,7 +60,7 @@ class BitacoraController extends Controller
         }
                 
 
-        return Redirect::route('/Bitacora');
+        return redirect('/Bitacora');
     }
 
     /**
@@ -74,7 +71,7 @@ class BitacoraController extends Controller
      */
     public function show($id)
     {
-        //
+        return Bitacora::find($id);
     }
 
     /**
@@ -85,7 +82,10 @@ class BitacoraController extends Controller
      */
     public function edit($id)
     {
-        //
+        $clientes=Clientes::all();
+        $estados=Estados::all();
+
+        return view('bitacora.crear',compact('id','clientes','estados'));
     }
 
     /**
@@ -95,9 +95,20 @@ class BitacoraController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(BitacoraUpdateRequest $request, $id)
     {
-        //
+        $bitacora=Bitacora::find($id);
+        $bitacora->fill($request->all());        
+
+        if($bitacora->save()){
+            Session::flash("message","Bitacora Actualizada");
+            Session::flash("class","success");
+        }else {
+            Session::flash("message","Ha ocurrido un error");
+            Session::flash("class","danger");
+        }
+
+        return back();
     }
 
     /**
@@ -108,6 +119,11 @@ class BitacoraController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Bitacora::destroy($id);
+
+        Session::flash('message','Bitacora eliminada correctamente');
+        Session::flash('class','success');
+
+        return back();
     }
 }

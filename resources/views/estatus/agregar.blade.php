@@ -46,11 +46,11 @@
 							</td>
 							
 							<td>								
-								<button class="btn btn-info btn-block editar"  data-target="#ventana" data-toggle="modal" value="{{$registro->idEstatus}}">Editar</button></td>				
+								<button class="btn btn-info btn-block btn-lg editar"  data-target="#ventana" data-toggle="modal" value="{{$registro->idEstatus}}"><img src="{{asset('imagenes/editar.png')}}" alt="">Editar</button></td>				
 								<div class="form-comtrol">
 									<form action="/Estatus/eliminar" method="post">
 										{{csrf_field()}}										
-										<td><button type="submit" onclick="return confirm('¿Seguro de que desea eliminar este registro?')" class="btn btn-danger btn-block" name="eliminar" value="{{$registro->idEstatus}}">Eliminar</button></td>											
+										<td><button type="submit" onclick="return confirm('¿Seguro de que desea eliminar este registro?')" class="btn btn-danger btn-block btn-lg" name="eliminar" value="{{$registro->idEstatus}}">Eliminar<img src="{{asset('imagenes/eliminar.png')}}" alt=""></button></td>											
 									</form>					
 								</div>
 						</tr>

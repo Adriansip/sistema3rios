@@ -27,14 +27,17 @@ Route::group(['middleware'=> ['admin']],function(){
 	Route::get('/Clientes','ClientesController@index');
 	Route::get('/Cliente/nuevo','ClientesController@create');	
 	Route::get('/Cliente/{idCliente}','ClientesController@show');
-
 	Route::post('/Cliente/nuevo/add','ClientesController@store');
 	Route::post('/Cliente/actualizar/{idCliente}','ClientesController@update');
 	Route::get('/Cliente/eliminar/{idCliente}','ClientesController@destroy');	
 
 	Route::get('/Bitacora','BitacoraController@index');
+	Route::get('/Bitacora/listar/{idBitacora}','BitacoraController@show');
 	Route::get('/Bitacora/crear','BitacoraController@create');
 	Route::post('/Bitacora/add','BitacoraController@store');
+	Route::post('/Bitacora/actualizar/{idBitacora}','BitacoraController@update');
+	Route::get('/Bitacora/editar/{idBitacora}','BitacoraController@edit');
+	Route::get('/Bitacora/eliminar/{idBitacora}','BitacoraController@destroy');
 
 	Route::post('/Estatus/create/{idBitacora}','EstatusController@store');
 	Route::get('/Estatus/agregar/{noEmbarque}','EstatusController@edit');
