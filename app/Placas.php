@@ -10,13 +10,20 @@ class Placas extends Model
 
     protected $fillable=['idPlaca','noPlaca','idTipoUnidad'];
 
-    public function unidad()
+    protected $primaryKey='idPlaca';
+
+     public function transportistas()
     {
-    	return $this->belongsTo(Unidades::class,'idTipoUnidad');
+        return $this->belongsToMany(Transportistas::class,'transportistas_placas','idPlaca','idTransportista')->withTimestamps();
     }
 
     public function operador()
     {
-    	return $this->belongsTo(Operadores::class);
+    	return $this->belongsTo(Operadores::class,'idOperador');
+    }
+
+    public function unidad()
+    {
+        return $this->belongsTo(TiposUnidades::class,'idTipoUnidad');   
     }
 }

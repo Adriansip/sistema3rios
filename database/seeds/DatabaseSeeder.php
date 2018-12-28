@@ -19,11 +19,10 @@ class DatabaseSeeder extends Seeder
         $this->call(EstadosTableSeeder::class);
 
         $this->call(CiudadesTableSeeder::class);
-
+        
+        $this->call(TipoUnidadesTableSeeder::class);        
 
         $this->call(TransportistasTableSeeder::class);
-
-        $this->call(TipoUnidadesTableSeeder::class);        
 
         $this->call(PlacasTableSeeder::class);
 

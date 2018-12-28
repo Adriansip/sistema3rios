@@ -13,10 +13,10 @@ class TransportistasUnidad extends Migration
      */
     public function up()
     {
-          Schema::create('transportistas_unidad', function (Blueprint $table) {
+          Schema::create('transportistas_placas', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('idTransportista')->unsigned();
-            $table->integer('idTipoUnidad')->unsigned();
+            $table->integer('idPlaca')->unsigned();
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class TransportistasUnidad extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('transportistas_unidad');
+        Schema::dropIfExists('transportistas_placas');
     }
 }

@@ -12,8 +12,8 @@ class Transportistas extends Model
 
     protected $primaryKey='idTransportista';
 
-    public function tipoUnidades()
+    public function placas()
     {
-    	return $this->belongsToMany(TipoUnidades::class,'transportistas_unidad','idTransportista','idTipoUnidad')->withTimestamps();
+    	return $this->belongsToMany(Placas::class,'transportistas_placas','idTransportista','idPlaca')->withTimestamps();
     }
 }
