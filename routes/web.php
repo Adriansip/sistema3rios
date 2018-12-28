@@ -46,8 +46,16 @@ Route::group(['middleware'=> ['admin']],function(){
 	Route::post('/Estatus/actualizar/{idEstatus}','EstatusController@update');
 	Route::get('/Estatus/listar/{idEstatus}','EstatusController@getEstatus');
 
-
 	Route::get('/Ciudades/{idCiudad}','CiudadesController@show');
+
+
+	//Rutas de la 2da parte
+	Route::get('/Transportistas','TransportistasController@index');
+	Route::post('/Transportistas/nuevo','TransportistasController@store');
+	Route::get('/Transportistas/eliminar/{id}','TransportistasController@destroy');
+
+	Route::get('/Unidades','TipoUnidadesController@index');
+
 });
 
 Route::get('/home', 'HomeController@index')->name('home');

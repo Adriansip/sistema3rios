@@ -16,6 +16,8 @@ class CreateTipoUnidadesTable extends Migration
         Schema::create('tipo_unidades', function (Blueprint $table) {
             $table->increments('idTipoUnidad');
             $table->string('tipoUnidad');
+            $table->integer('min')->nullable();
+            $table->integer('max')->nullable();
             $table->timestamps();
         });
     }

@@ -16,7 +16,7 @@ class TransportistasUnidad extends Migration
           Schema::create('transportistas_unidad', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('idTransportista')->unsigned();
-            $table->integer('idUnidad')->unsigned();
+            $table->integer('idTipoUnidad')->unsigned();
             $table->timestamps();
         });
     }

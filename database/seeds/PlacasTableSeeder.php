@@ -14,19 +14,19 @@ class PlacasTableSeeder extends Seeder
     {
         $placa=new Placas();
         $placa->noPlaca="KW68484";
-        $placa->idUnidad=1;
+        $placa->idTipoUnidad=1;
         $placa->save();
 
 
         $placa=new Placas();
         $placa->noPlaca="LC-14-648";
-        $placa->idUnidad=2;
+        $placa->idTipoUnidad=2;
         $placa->save();
 
 
         $placa=new Placas();
         $placa->noPlaca="68AG8K";
-        $placa->idUnidad=3;
+        $placa->idTipoUnidad=3;
         $placa->save();
 
 

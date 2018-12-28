@@ -24,4 +24,9 @@ class Clientes extends Model
 		return $this->belongsTo(Ciudades::class,'idCiudad');
 	}
 
+	public function tarifa()
+	{
+		return $this->belongsTo(Tarifas::class);
+	}
+
 }

@@ -16,15 +16,21 @@ class DatabaseSeeder extends Seeder
     	// Los usuarios necesitarán los roles previamente generados
     	$this->call(UserTableSeeder::class);
 
+        $this->call(EstadosTableSeeder::class);
+
+        $this->call(CiudadesTableSeeder::class);
+
 
         $this->call(TransportistasTableSeeder::class);
 
-        $this->call(TipoUnidadesTableSeeder::class);
-
-        $this->call(UnidadesTableSeeder::class);
+        $this->call(TipoUnidadesTableSeeder::class);        
 
         $this->call(PlacasTableSeeder::class);
 
         $this->call(OperadoresTableSeeder::class);
+
+        $this->call(ClientesTableSeeder::class);
+
+        $this->call(TarifasTableSeeder::class);
     }
 }

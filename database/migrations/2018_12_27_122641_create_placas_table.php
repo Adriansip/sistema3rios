@@ -16,7 +16,7 @@ class CreatePlacasTable extends Migration
         Schema::create('placas', function (Blueprint $table) {
             $table->increments('idPlaca');
             $table->string('noPlaca');
-            $table->integer('idUnidad')->unsigned();
+            $table->integer('idTipoUnidad')->unsigned();
             $table->timestamps();
         });
     }

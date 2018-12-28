@@ -10,8 +10,10 @@ class Transportistas extends Model
 
     protected $fillable=['idTransportista','transportista'];
 
-    public function unidades()
+    protected $primaryKey='idTransportista';
+
+    public function tipoUnidades()
     {
-    	return $this->belongsToMany(Unidades::class,'transportistas_unidad','idTransportista','idUnidad')->withTimestamps();
+    	return $this->belongsToMany(TipoUnidades::class,'transportistas_unidad','idTransportista','idTipoUnidad')->withTimestamps();
     }
 }

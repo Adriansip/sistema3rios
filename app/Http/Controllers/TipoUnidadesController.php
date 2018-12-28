@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Transportistas;
-use Session;
+use App\TipoUnidades;
 
-class TransportistasController extends Controller
+class TipoUnidadesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +14,9 @@ class TransportistasController extends Controller
      */
     public function index()
     {
-        $transportistas=Transportistas::all();
-        return view('transportista.index',compact('transportistas'));
+        $unidades=TipoUnidades::all();
+        
+        return view ('unidades.index',compact('unidades'));
     }
 
     /**
@@ -37,18 +37,7 @@ class TransportistasController extends Controller
      */
     public function store(Request $request)
     {
-        $transportista=new Transportistas();
-        $transportista->fill($request->all());
-
-        if($transportista->save()){
-            Session::flash('message','Transportistas guardado con exito');
-            Session::flash('class','success');
-        }else{
-            Session::flash('message','Ha ocurrido un error');
-            Session::flash('class','danger');
-        }
-
-        return back();
+        //
     }
 
     /**
@@ -93,11 +82,6 @@ class TransportistasController extends Controller
      */
     public function destroy($id)
     {
-        Transportistas::destroy($id);
-
-        Session::flash('message','transportista eliminado correctamente');
-        Session::flash('class','success');
-
-        return back();
+        //
     }
 }
