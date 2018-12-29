@@ -14,7 +14,7 @@ class TipoUnidadesController extends Controller
      */
     public function index()
     {
-        $unidades=TipoUnidades::all();
+        $unidades=TipoUnidades::all();        
         
         return view ('unidades.index',compact('unidades'));
     }

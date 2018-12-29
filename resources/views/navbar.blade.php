@@ -16,3 +16,6 @@
       <a class="dropdown-item" href="/Cliente/nuevo">Agregar</a>
     </div>
   </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/Placas">Placas</a>
+  </li>

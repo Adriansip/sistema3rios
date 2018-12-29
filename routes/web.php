@@ -53,8 +53,21 @@ Route::group(['middleware'=> ['admin']],function(){
 	Route::get('/Transportistas','TransportistasController@index');
 	Route::post('/Transportistas/nuevo','TransportistasController@store');
 	Route::get('/Transportistas/eliminar/{id}','TransportistasController@destroy');
+	Route::get('/Transportistas/listar/{id}','TransportistasController@show');
+	Route::get('/Transportistas/listar/placas/{idTrans}','TransportistasController@showPlacas');
 
 	Route::get('/Unidades','TipoUnidadesController@index');
+
+
+	Route::get('/Placas','PlacasController@index');
+	Route::get('/Placas/listar','PlacasController@show');
+
+	//Lista el operador y transportista relacionada a un ID de placa
+	Route::get('/TranPlacas/listarOperadoresTransportistas/{id}','TranPlacasController@showOperadoresTrans');
+
+	//Listado de placas de un transportista
+	Route::get('/TranPlacas/listarPlacas/{id}','TranPlacasController@showPlacas');
+
 
 });
 

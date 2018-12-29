@@ -3,12 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Transportistas;
-use App\Placas;
 use App\TranPlacas;
-use Session;
-
-class TransportistasController extends Controller
+use App\Operadores;
+class TranPlacasController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +14,7 @@ class TransportistasController extends Controller
      */
     public function index()
     {
-        $transportistas=Transportistas::all();
-        return view('transportista.index',compact('transportistas'));
+        
     }
 
     /**
@@ -39,18 +35,7 @@ class TransportistasController extends Controller
      */
     public function store(Request $request)
     {
-        $transportista=new Transportistas();
-        $transportista->fill($request->all());
-
-        if($transportista->save()){
-            Session::flash('message','Transportistas guardado con exito');
-            Session::flash('class','success');
-        }else{
-            Session::flash('message','Ha ocurrido un error');
-            Session::flash('class','danger');
-        }
-
-        return back();
+        //
     }
 
     /**
@@ -59,16 +44,37 @@ class TransportistasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function showOperadoresTrans($idPlaca)
     {
-        $transportista=Transportistas::all();        
+        $transportista=TranPlacas::where('idPlaca',$idPlaca)->first();
+        $idPlaca=$transportista->placas->idPlaca;        
+        $operador=Operadores::where('idPlaca',$idPlaca)->first();
 
         $data=[
-            'data' => $transportista,            
+            'transportista' => $transportista->transportistas,
+            'operador' => $operador
         ];
+
         return $data;
     }
 
+
+    public function showPlacas($idTransportista)
+    {
+        $placas=TranPlacas::where('idTransportista',$idTransportista)->get();
+        
+        $data=array();
+        $noPlacas=[]; 
+        foreach ($placas as $placa) {
+            $noPlacas=[
+                'placa' => $placa->placas,
+                'tipoUnidad' => $placa->placas->unidad
+            ];
+            array_push($data, $noPlacas);
+        }
+
+        return $data;
+    }
 
     /**
      * Show the form for editing the specified resource.
@@ -101,11 +107,6 @@ class TransportistasController extends Controller
      */
     public function destroy($id)
     {
-        Transportistas::destroy($id);
-
-        Session::flash('message','transportista eliminado correctamente');
-        Session::flash('class','success');
-
-        return back();
+        //
     }
 }

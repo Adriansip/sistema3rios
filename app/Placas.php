@@ -24,6 +24,6 @@ class Placas extends Model
 
     public function unidad()
     {
-        return $this->belongsTo(TiposUnidades::class,'idTipoUnidad');   
+        return $this->belongsTo(TipoUnidades::class,'idTipoUnidad');   
     }
 }

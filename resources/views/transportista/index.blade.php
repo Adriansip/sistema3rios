@@ -5,6 +5,8 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css">
 
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+
+<link rel="stylesheet" href="{{asset('css/transportistas/tabladinamica.css')}}">
 @endsection
 
 
@@ -16,35 +18,43 @@
 </div>	
 	
 <div class="table-responsive-sm col-lg-12">
-	<table id="tblBitacora" class="table table-striped table-bordered table-sm">
-		<thead>			
-			<th scope="col" class="text-center">ID Transportista</th>
-			<th scope="col" class="text-center">Transportista</th>			
-			<th scope="col" class="text-center">Editar</th>
-			<th scope="col" class="text-center">Eliminar</th>
-		</thead>
-		<tbody>			
-				@foreach($transportistas as $transportista)
-				<tr>
-					<th scope="row" class="text-center" >{{$transportista->idTransportista}}</th>
-					<td class="text-center">{{$transportista->transportista}}</td>	
-					<td class="text-center">
-						<a class="btn">
-						<button class="btn btn-info btn-xs editar" data-target="#ventana" data-toggle="modal" value="{{$transportista->idTransportista}}">
-						  Editar <img src="{{asset('imagenes/editar.png')}}" alt="editar">
-						</button>
-						</a>
-					</td>
-					<td class="text-center">
-						<a href="/Transportistas/eliminar/{{$transportista->idTransportista}}" class="btn"><button class="btn btn-danger btn-xs" onclick="return confirm('¿Seguro de que desea eliminar este registro?')">
-						  Eliminar<img src="{{asset('imagenes/eliminar.png')}}" alt="eliminar">
-						</button>
-						</a>
-					</td>
-				</tr>
-				@endforeach
-		</tbody>
-	</table>
+	<table id="tblTransportistas" class="display table table-striped table-bordered" style="width:100%">
+        <thead>
+            <tr>
+                <th>Placas/Unidades</th>
+                <th>ID Transportista</th>
+                <th>Transportista</th>
+                <th>Editar</th>
+                <th>Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+        	@foreach($transportistas as $transportista)
+                <tr>
+                    <td class="details-control"></td>
+                    <td class="text-center">{{$transportista->idTransportista}}</td>
+                    <td class="text-center">{{$transportista->transportista}}</td>
+                    
+
+                    <td class="text-center">
+                        <a role="button" aria-pressed="true" href="" class="btn btn-info btn-lg">Editar
+                        <img src="{{asset('imagenes/editar.png')}}" alt="editar"></a></td>
+                    <td class="text-center">
+                        <a role="button" aria-pressed="true" href="" class="btn btn-danger btn-lg">ELiminar
+                        <img src="{{asset('imagenes/eliminar.png')}}" alt="eliminar"></a></td>
+                </tr>
+            @endforeach
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>Placas/Unidades</th>
+                <th>ID Transportista</th>
+                <th>Transportista</th>
+                <th>Editar</th>
+                <th>Eliminar</th>
+            </tr>
+        </tfoot>
+    </table>
 </div>
 @endsection
 
@@ -65,10 +75,6 @@
 
 	<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
 
-	<script>
-		$(document).ready( function () {
-    		$('#tblBitacora').DataTable();
-		});
-	</script>
+	<script src="{{asset('js/transportistas/tabladinamica.js')}}"></script>
 	
 @endsection
